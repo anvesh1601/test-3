@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="transchat1.0/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/transchat1.0.iml" filepath="$PROJECT_DIR$/.idea/modules/transchat1.0.iml" group="transchat1.0" />
+    </modules>
+  </component>
+</project>

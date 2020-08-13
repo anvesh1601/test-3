@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1086026413910",
+    "firebase_url": "https://transchat-a113d.firebaseio.com",
+    "project_id": "transchat-a113d",
+    "storage_bucket": "transchat-a113d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086026413910:android:ec692c6aa31443decb88f7",
+        "android_client_info": {
+          "package_name": "com.anveshreddy.transchat10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086026413910-k18o9534a7lfrutn3uvsbeshsig6c9ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx9MqslyxlLvqQlOapa2qdJzJbLAQl2Y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086026413910-k18o9534a7lfrutn3uvsbeshsig6c9ct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
