@@ -123,7 +123,7 @@ return view;
                     int countStory = 0;
                     Story story = null;
                     for (DataSnapshot snapshot : dataSnapshot.child(id).getChildren()) {
-
+                        countStory = 0;
                         story = snapshot.getValue(Story.class);
                         if (timecurrent > story.getStoryStart() && timecurrent < story.getStoryEnd()) {
                             countStory++;

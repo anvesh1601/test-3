@@ -4,40 +4,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+    ImageView iv;
+    Animation am;
 
-    FirebaseUser firebaseusert;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseusert= FirebaseAuth.getInstance().getCurrentUser();
-        if(firebaseusert!=null){
-            Intent i=new Intent(this,Dashboard.class);
-            startActivity(i);
-            finish();
-        }
 
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        iv=findViewById(R.id.backimg);
+        am= AnimationUtils.loadAnimation(this,R.anim.bottom);
+        iv.setAnimation(am);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i= new Intent(getApplicationContext(), ChooseActivity.class);
+                startActivity(i);
+            }
+        },5000);
     }
 
-    public void login(View view) {
-        Intent i=new Intent(this,LoginActivity.class);
-        startActivity(i);
-
-    }
-
-    public void signup(View view) {
-        Intent i=new Intent(this,SignupActivity.class);
-        startActivity(i);
-    }
 }

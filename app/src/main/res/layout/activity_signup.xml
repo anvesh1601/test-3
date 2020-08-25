@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#777575"
+    android:background="@drawable/grad1"
     tools:context="com.anveshreddy.transchat10.SignupActivity">
 
     <TextView
@@ -14,6 +14,7 @@
         android:gravity="center"
         android:text="Welcome to TransChat"
         android:textSize="33dp"
+        android:textColor="#E5E6DF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,7 @@
         android:id="@+id/spinner"
         android:layout_width="159dp"
         android:layout_height="59dp"
-
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.821"
@@ -43,14 +44,14 @@
         android:gravity="center_horizontal"
         android:text="Sign In"
         android:textAlignment="center"
-        android:textColor="@color/colorAccent"
+        android:textColor="#D3DDAF"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706" />
+        app:layout_constraintVertical_bias="0.54" />
 
     <EditText
         android:id="@+id/username"
@@ -61,8 +62,8 @@
         android:hint="Username"
         android:inputType="textPersonName"
         android:text=""
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FDFDFD"
+        android:textColor="#D3DDAF"
+        android:textColorHint="#D3DDAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -77,8 +78,8 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress|textNoSuggestions"
-        android:textColor="@color/colorAccent"
-        android:textColorHint="@color/colorAccent"
+        android:textColor="#D3DDAF"
+        android:textColorHint="#D3DDAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -93,8 +94,8 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="@color/colorAccent"
-        android:textColorHint="@color/colorAccent"
+        android:textColor="#D3DDAF"
+        android:textColorHint="#D3DDAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -108,8 +109,8 @@
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        android:textColor="@color/colorAccent"
-        android:textColorHint="@color/colorAccent"
+        android:textColor="#D3DDAF"
+        android:textColorHint="#D3DDAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -125,10 +126,10 @@
         android:textColor="#FF1744"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873" />
+        app:layout_constraintVertical_bias="0.863" />
 
     <Button
         android:id="@+id/sibutton12"
@@ -137,9 +138,10 @@
         android:background="@drawable/shape"
         android:text="Sign in"
 
-        android:textColor="@color/colorAccent"
+        android:textColor="#4A4A49"
         android:textColorHint="@color/colorAccent"
-        android:textSize="25dp"
+        android:textSize="27dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -153,7 +155,7 @@
         android:layout_height="61dp"
         android:gravity="center"
         android:text="Prefered Language"
-        android:textColor="@color/colorAccent"
+        android:textColor="#D3DDAF"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

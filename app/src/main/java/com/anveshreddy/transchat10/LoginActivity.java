@@ -3,6 +3,7 @@ package com.anveshreddy.transchat10;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText e1,e2;
     Button b1;
     FirebaseAuth auth;
-    TextView tv;
+    TextView tv,tv1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +30,12 @@ public class LoginActivity extends AppCompatActivity {
         e2=findViewById(R.id.Password3);
         b1=findViewById(R.id.button2);
         tv = findViewById(R.id.textViee);
+        tv1=findViewById(R.id.textView9);
         auth= FirebaseAuth.getInstance();
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String email=e1.getText().toString();
                 String password=e2.getText().toString();
                 if(TextUtils.isEmpty(email)||TextUtils.isEmpty(password)){
@@ -55,6 +58,15 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        tv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+Intent in = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+startActivity(in);
+            }
+        });
+
 
     }
 

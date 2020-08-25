@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-android:background="@drawable/grad1"
+android:background="@drawable/grad4"
     tools:context=".Fragments.TranslateFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,7 +13,7 @@ android:background="@drawable/grad1"
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="94dp"
         android:background="#54000000"
         android:elevation="10dp"
         android:padding="10dp"
@@ -26,15 +26,15 @@ android:background="@drawable/grad1"
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="321dp"
-            android:layout_height="85dp"
+            android:layout_width="357dp"
+            android:layout_height="68dp"
             android:background="#08000000"
 
             android:hint="Enter your text...."
             android:paddingLeft="10dp"
-            android:textColorHint="#D5EF7A"
+            android:textColor="#1B1E0F"
+            android:textColorHint="#1E2211"
             android:textSize="20dp"
-            android:textColor="#D5EF7A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_send"
             app:layout_constraintHorizontal_bias="0.0"
@@ -44,8 +44,8 @@ android:background="@drawable/grad1"
 
         <ImageButton
             android:id="@+id/btn_send"
-            android:layout_width="65dp"
-            android:layout_height="52dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_baseline_send_24"
@@ -58,25 +58,25 @@ android:background="@drawable/grad1"
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner2"
-            android:backgroundTint="@color/color1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.702"
+            app:layout_constraintHorizontal_bias="0.872"
             app:layout_constraintStart_toStartOf="@+id/editText"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.386" />
+            app:layout_constraintVertical_bias="0.445" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="413dp"
+        android:layout_width="406dp"
+        android:layout_height="409dp"
         android:gravity="center"
         android:text="Translated text"
-        android:textColor="#D5EF7A"
+        android:textColor="#333A1A"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"

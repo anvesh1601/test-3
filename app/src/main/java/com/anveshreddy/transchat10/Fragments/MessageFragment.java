@@ -91,7 +91,7 @@ public class MessageFragment extends Fragment {
                     User user = snapshot.getValue(User.class);
 
                     for (String id : followingList){
-                        if (!user.getId().equals(firebaseUser.getUid())) {
+                        if (user.getId().equals(id)) {
                             mUsers.add(user);
                         }
                     }
@@ -99,7 +99,7 @@ public class MessageFragment extends Fragment {
                 }
 
 
-                userAdapter = new Message_User_Adapter(getContext(), mUsers,true);
+                userAdapter = new Message_User_Adapter(getContext(), mUsers,true,true);
                 try {
                     recyclerView.setAdapter(userAdapter);
                 } catch (Exception e) {

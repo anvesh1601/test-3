@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CommentActivity"></activity>
+        <activity android:name=".ForgetPasswordActivity"></activity>
+        <activity android:name=".EditProfile" />
+        <activity android:name=".ChooseActivity" />
+        <activity android:name=".CommentActivity" />
         <activity android:name=".PostActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".FollowersActivity" />
@@ -33,8 +36,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

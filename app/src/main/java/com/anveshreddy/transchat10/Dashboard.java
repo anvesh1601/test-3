@@ -16,6 +16,11 @@ import com.anveshreddy.transchat10.Fragments.SearchFragment;
 import com.anveshreddy.transchat10.Fragments.TranslateFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class Dashboard extends AppCompatActivity {
     BottomNavigationView bottom_navigation;
@@ -23,7 +28,8 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);bottom_navigation = findViewById(R.id.bottom_navigation);
+        setContentView(R.layout.activity_dashboard);
+        bottom_navigation = findViewById(R.id.bottom_navigation);
         bottom_navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
 
@@ -76,6 +82,26 @@ public class Dashboard extends AppCompatActivity {
                 }
             };
 
+    private void status(String status){
+      FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+      DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+
+        reference.updateChildren(hashMap);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
+    }
 
 }

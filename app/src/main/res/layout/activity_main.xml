@@ -6,32 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.anveshreddy.transchat10.MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="316dp"
-        android:layout_height="61dp"
-        android:text="login"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/backimg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711"
-        android:onClick="login"
-        />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="316dp"
-        android:layout_height="61dp"
-        android:text="Signup"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.823"
-        android:onClick="signup"
-
-        />
+        app:layout_constraintVertical_bias="0.988" />
 </androidx.constraintlayout.widget.ConstraintLayout>

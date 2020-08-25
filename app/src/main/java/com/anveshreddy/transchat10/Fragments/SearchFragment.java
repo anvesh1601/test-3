@@ -36,7 +36,7 @@ public class SearchFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUser;
 
-    EditText search_bar;
+    EditText search_users;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,13 +48,13 @@ public class SearchFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        search_bar=view.findViewById(R.id.search_bar);
+        search_users=view.findViewById(R.id.search_bar);
 
         mUser=new ArrayList<>();
         userAdapter=new UserAdapter(getContext(),mUser,true);
 recyclerView.setAdapter(userAdapter);
         readUsers();
-        search_bar.addTextChangedListener(new TextWatcher() {
+        search_users.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -75,7 +75,7 @@ recyclerView.setAdapter(userAdapter);
     }
 
     private void searchUsers(String s){
-        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("username")
+        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("search")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
 
@@ -86,9 +86,10 @@ recyclerView.setAdapter(userAdapter);
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
                     mUser.add(user);
-                }
 
-                userAdapter.notifyDataSetChanged();
+                }
+                userAdapter = new UserAdapter(getContext(), mUser, false);
+                recyclerView.setAdapter(userAdapter);
             }
 
             @Override
@@ -106,7 +107,7 @@ recyclerView.setAdapter(userAdapter);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (search_bar.getText().toString().equals("")) {
+                if (search_users.getText().toString().equals("")) {
                     mUser.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         User user = snapshot.getValue(User.class);

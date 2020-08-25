@@ -69,7 +69,7 @@ public class MessageActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                f= new MessageFragment();
+                finish();
 
             }
         });
@@ -92,8 +92,22 @@ public class MessageActivity extends AppCompatActivity {
 
         fuser= FirebaseAuth.getInstance().getCurrentUser();
         final int i= FirebaseTranslateLanguage.EN;
+String myUserid=fuser.getUid();
+DatabaseReference r=FirebaseDatabase.getInstance().getReference("Users").child(myUserid);
+r.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        User u= snapshot.getValue(User.class);
+        s3=u.getPreferedlanguage();
+        int i=Integer.parseInt(s3);
+        Translanguagecode=i;
+    }
 
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
 
+    }
+});
 
         reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
         reference.addValueEventListener(new ValueEventListener() {
@@ -101,13 +115,11 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user=snapshot.getValue(User.class);
                 username.setText(user.getUsername());
-                s3=user.getPreferedlanguage();
-                int i=Integer.parseInt(s3);
-                Translanguagecode=i;
+
                 if (user.getImageURL().equals("Default")){
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {
-                    Glide.with(MessageActivity.this).load(user.getImageURL()).into(profile_image);
+                    Glide.with(getApplicationContext()).load(user.getImageURL()).into(profile_image);
                 }
                 readMesagges(fuser.getUid(), userid, user.getImageURL());
             }

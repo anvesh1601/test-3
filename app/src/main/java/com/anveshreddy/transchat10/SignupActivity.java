@@ -3,6 +3,7 @@ package com.anveshreddy.transchat10;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -117,9 +118,12 @@ public class SignupActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final ProgressDialog pd = new ProgressDialog(SignupActivity.this);
+                pd.setMessage("Loading");
+                pd.show();
                 final String preferedlanguage=String.valueOf(Translanguagecode);
                 final String s1=e1.getText().toString();
-                String s2=e2.getText().toString();
+                final String s2=e2.getText().toString();
                 String s3=e3.getText().toString();
                 String s4=e4.getText().toString();
                 translatecode(FirebaseTranslateLanguage.EN,Translanguagecode);
@@ -141,7 +145,10 @@ public class SignupActivity extends AppCompatActivity {
                                 hashMap.put("id",Userid);
                                 hashMap.put("preferedlanguage",preferedlanguage);
                                 hashMap.put("username",s1);
+                                hashMap.put("Email",s2);
                                 hashMap.put("ImageURL","Default");
+                                hashMap.put("status", "offline");
+                                hashMap.put("search", s1.toLowerCase());
                                 reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task1) {
