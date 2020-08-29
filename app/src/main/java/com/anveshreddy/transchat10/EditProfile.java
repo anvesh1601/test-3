@@ -53,12 +53,13 @@ public class EditProfile extends AppCompatActivity {
     ImageView close, image_profile;
     TextView save, Prefered_Lang,lang;
     MaterialEditText Email, Username;
-    Spinner sp1;
+    Spinner sp1,sp;
     Button b1;
-    private Boolean spinnerTouched = false;
+    private Boolean spinnerTouched = false,spinnerTouched1 = false;
     int Translanguagecode;
+    int ijk;
     FirebaseUser firebaseUser;
-    String s3,ss3,l,Langcode;
+    String s3,ss3,l,Langcode,t;
     private Uri mImageUri;
     private StorageTask uploadTask;
     StorageReference storageRef;
@@ -72,7 +73,7 @@ image_profile=findViewById(R.id.image_profile);
              Prefered_Lang=findViewById(R.id.Language_Preferred);
              sp1=findViewById(R.id.langSpinner);
              b1=findViewById(R.id.changePassword);
-
+sp=findViewById(R.id.TrueSpinner);
 lang=findViewById(R.id.LanguagePreferred);
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
@@ -92,6 +93,11 @@ storageRef= FirebaseStorage.getInstance().getReference("uploads");
                 Translanguagecode=i;
                 l= findLanguage(i);
                lang.setText(l);
+               if(user.getBusiness().equals("true")){
+            ijk=0;
+               }else{
+                   ijk=1;
+               }
                 if (user.getImageURL().equals("Default")){
                     image_profile.setImageResource(R.mipmap.ic_launcher);
                 } else {
@@ -104,7 +110,46 @@ storageRef= FirebaseStorage.getInstance().getReference("uploads");
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
+        ArrayAdapter<CharSequence> arrayAdapter1=ArrayAdapter.createFromResource(EditProfile.this,R.array.truee,android.R.layout.simple_spinner_item);
+        arrayAdapter1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        sp.setSelection(ijk);
+        sp.setAdapter(arrayAdapter1);
+        sp.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                spinnerTouched1 = true;
+                return false;
+            }
+        });
+
+sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String s=adapterView.getItemAtPosition(i).toString();
+        if(spinnerTouched1){
+            switch (s){
+                case "on":
+                    t="truee";
+
+                    break;
+                case "off":
+                    t="falsee";
+
+                    break;
+
+            }
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+});
         ArrayAdapter<CharSequence> arrayAdapter=ArrayAdapter.createFromResource(EditProfile.this,R.array.languages,android.R.layout.simple_spinner_item);
 
 
@@ -170,7 +215,7 @@ storageRef= FirebaseStorage.getInstance().getReference("uploads");
                     }
                 }
                 Langcode=String.valueOf(Translanguagecode);
-
+changeLanguage(Langcode);
             }
 
             @Override
@@ -180,6 +225,7 @@ storageRef= FirebaseStorage.getInstance().getReference("uploads");
                 Toast.makeText(EditProfile.this, "Please Select a language", Toast.LENGTH_LONG).show();
 
             }
+
         });
 
 
@@ -224,16 +270,10 @@ storageRef= FirebaseStorage.getInstance().getReference("uploads");
 if(PreferedLanguage.equals("")){
     PreferedLanguage=lang.getText().toString();
 }
+        FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("business").setValue(t);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
-
-        HashMap<String, Object> map = new HashMap<>();
-
-        map.put("Username", username);
-        map.put("preferedlanguage", PreferedLanguage);
-        map.put("Email",mail);
-
-        reference.updateChildren(map);
+FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Username").setValue(username);
+FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("Email").setValue(mail);
 
         Toast.makeText(EditProfile.this, "Successfully updated!", Toast.LENGTH_SHORT).show();
     }
@@ -343,5 +383,11 @@ if(PreferedLanguage.equals("")){
         }
         return ss3;
     }
+private  void business(String st){
+    FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("business").setValue(st);
 
+}
+private  void changeLanguage(String i){
+    FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid()).child("preferedlanguage").setValue(i);
+}
 }

@@ -61,9 +61,7 @@ holder.btn_follow.setVisibility(View.VISIBLE);
 holder.UserName.setText(user.getUsername());
         Glide.with(mcontext).load(user.getImageURL()).into(holder.CIV);
 isFollowing(user.getId(),holder.btn_follow);
-        if (user.getId().equals(firebaseUser.getUid())){
-            holder.btn_follow.setVisibility(View.GONE);
-        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

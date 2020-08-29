@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.anveshreddy.transchat10.Adapters.UserAdapter;
+import com.anveshreddy.transchat10.Adapters.searchAdapter;
 import com.anveshreddy.transchat10.Model.User;
 import com.anveshreddy.transchat10.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +34,7 @@ import java.util.List;
 public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private UserAdapter userAdapter;
+    private searchAdapter userAdapter;
     private List<User> mUser;
 
     EditText search_users;
@@ -51,7 +52,7 @@ public class SearchFragment extends Fragment {
         search_users=view.findViewById(R.id.search_bar);
 
         mUser=new ArrayList<>();
-        userAdapter=new UserAdapter(getContext(),mUser,true);
+        userAdapter=new searchAdapter(getContext(),mUser,true,FirebaseAuth.getInstance().getCurrentUser().getUid());
 recyclerView.setAdapter(userAdapter);
         readUsers();
         search_users.addTextChangedListener(new TextWatcher() {
@@ -75,6 +76,7 @@ recyclerView.setAdapter(userAdapter);
     }
 
     private void searchUsers(String s){
+        final FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
         Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("search")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
@@ -84,11 +86,14 @@ recyclerView.setAdapter(userAdapter);
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUser.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
                     User user = snapshot.getValue(User.class);
+
                     mUser.add(user);
 
+
                 }
-                userAdapter = new UserAdapter(getContext(), mUser, false);
+                userAdapter = new searchAdapter(getContext(), mUser, false,firebaseUser.getUid());
                 recyclerView.setAdapter(userAdapter);
             }
 
@@ -111,8 +116,11 @@ recyclerView.setAdapter(userAdapter);
                     mUser.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         User user = snapshot.getValue(User.class);
+                        if(user.getId().equals(firebaseUser.getUid())){}
+                        else{
+                            mUser.add(user);
+                        }
 
-                        mUser.add(user);
 
                     }
 

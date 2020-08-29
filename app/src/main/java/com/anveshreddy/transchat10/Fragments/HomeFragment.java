@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.anveshreddy.transchat10.Adapters.PostAdapter;
 import com.anveshreddy.transchat10.Adapters.StoryAdapter;
+import com.anveshreddy.transchat10.HireActivity;
 import com.anveshreddy.transchat10.Model.Post;
 import com.anveshreddy.transchat10.Model.Story;
 import com.anveshreddy.transchat10.PostActivity;
@@ -42,7 +44,8 @@ FloatingActionButton fb;
     private StoryAdapter storyAdapter;
     private List<Story> storyList;
     private List<String> followingList;
-
+    Fragment selectedfragment = null;
+ImageView iv;
     ProgressBar progress_circular;
 
     @Override
@@ -52,7 +55,7 @@ FloatingActionButton fb;
       View view= inflater.inflate(R.layout.fragment_home, container, false);
 
 
-
+iv=view.findViewById(R.id.hire);
         recyclerView = view.findViewById(R.id.recycler_view_post);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
@@ -66,7 +69,14 @@ FloatingActionButton fb;
 fb.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
+
         startActivity(new Intent(getContext(), PostActivity.class));
+    }
+});
+iv.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(getContext(), HireActivity.class));
     }
 });
 

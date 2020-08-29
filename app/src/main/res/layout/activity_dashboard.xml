@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/bottom_navigation"
 
-            app:labelVisibilityMode="unlabeled"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_menu"
             android:background="?android:attr/windowBackground"/>
 

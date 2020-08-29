@@ -1,5 +1,6 @@
 package com.anveshreddy.transchat10.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -18,14 +19,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anveshreddy.transchat10.Adapters.MyFotosAdapter;
 import com.anveshreddy.transchat10.EditProfile;
 import com.anveshreddy.transchat10.FollowersActivity;
 import com.anveshreddy.transchat10.MainActivity;
+import com.anveshreddy.transchat10.Model.HireStatus;
 import com.anveshreddy.transchat10.Model.Post;
 import com.anveshreddy.transchat10.Model.User;
 import com.anveshreddy.transchat10.R;
+import com.anveshreddy.transchat10.sendHiringRequestActivity;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,8 +50,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class ProfileFragment extends Fragment {
-
-    ImageView image_profile, options;
+    private Activity mActivity;
+    ImageView image_profile, options,iv;
     TextView posts, followers, following, fullname, bio, username;
     Button edit_profile;
     DatabaseReference reference;
@@ -64,7 +68,8 @@ String profileid;
     private RecyclerView recyclerView;
     private MyFotosAdapter myFotosAdapter;
     private List<Post> postList;
-
+Button hire;
+    String b;
     private RecyclerView recyclerView_saves;
     private MyFotosAdapter myFotosAdapter_saves;
     private List<Post> postList_saves;
@@ -81,7 +86,7 @@ String profileid;
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
-
+hire=view.findViewById(R.id.Hire_profile);
         image_profile = view.findViewById(R.id.image_profile);
         posts = view.findViewById(R.id.posts);
         followers = view.findViewById(R.id.followers);
@@ -98,6 +103,7 @@ options.setOnClickListener(new View.OnClickListener() {
         FirebaseAuth.getInstance().signOut();
         Intent i= new Intent(getContext(), MainActivity.class);
         startActivity(i);
+
 
     }
 });
@@ -130,8 +136,17 @@ options.setOnClickListener(new View.OnClickListener() {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (getActivity() == null) {
+                    return;
+                }
+
                 User user = snapshot.getValue(User.class);
                 s1=user.getId();
+               b=user.getBusiness();
+if(user.getBusiness().equals("truee")){
+
+}
                 username.setText(user.getUsername());
                 if (user.getImageURL().equals("Default")){
                     image_profile.setImageResource(R.mipmap.ic_launcher);
@@ -146,10 +161,13 @@ options.setOnClickListener(new View.OnClickListener() {
             }
         });
 
+
         if (profileid.equals(firebaseUser.getUid())){
             edit_profile.setText("Edit Profile");
+            hire.setVisibility(View.GONE);
         } else {
             checkFollow();
+            hire.setVisibility(View.VISIBLE);
             saved_fotos.setVisibility(View.GONE);
         }
 
@@ -168,6 +186,7 @@ options.setOnClickListener(new View.OnClickListener() {
                             .child("following").child(profileid).setValue(true);
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
                             .child("followers").child(firebaseUser.getUid()).setValue(true);
+
 
                 } else if (btn.equals("following")){
 
@@ -217,6 +236,16 @@ options.setOnClickListener(new View.OnClickListener() {
                 startActivity(intent);
             }
         });
+        hire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    Intent i = new Intent(getContext(), sendHiringRequestActivity.class);
+                    i.putExtra("userid", profileid);
+                    startActivity(i);
+
+            }
+        });
         userInfo();
         ReadFollower();
         ReadFollowing();
@@ -225,7 +254,11 @@ options.setOnClickListener(new View.OnClickListener() {
         mySaves();
         return view;
     }
+
+
     private void userInfo(){
+        FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+     final String id=firebaseUser.getUid();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -234,6 +267,17 @@ options.setOnClickListener(new View.OnClickListener() {
                     return;
                 }
                 User user = dataSnapshot.getValue(User.class);
+                if(id.equals(profileid)){
+                    hire.setVisibility(View.GONE);
+
+                }else{
+                    if(user.getBusiness().equals("truee")){
+hire.setVisibility(View.VISIBLE);
+                    }else{
+                        hire.setVisibility(View.GONE);
+                    }
+                }
+
 
                 Glide.with(getContext()).load(user.getImageURL()).into(image_profile);
                 username.setText(user.getUsername());

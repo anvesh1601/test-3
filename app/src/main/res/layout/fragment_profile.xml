@@ -58,20 +58,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/top_bar"
-                android:padding="16dp"
+                android:padding="5dp"
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:id="@+id/image_profile"/>
+                    android:id="@+id/image_profile"
+                    android:layout_width="91dp"
+                    android:layout_height="97dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="15dp"
                     android:paddingRight="4dp"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -148,9 +148,17 @@
 
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
                         android:layout_marginTop="8dp"
                         android:id="@+id/edit_profile"
+                        android:background="@drawable/button_black"/>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Hire"
+
+                        android:id="@+id/Hire_profile"
                         android:background="@drawable/button_black"/>
 
                 </LinearLayout>

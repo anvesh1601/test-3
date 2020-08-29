@@ -142,6 +142,7 @@ public class SignupActivity extends AppCompatActivity {
                                 String Userid=firebaseUser.getUid();
                                 reference=FirebaseDatabase.getInstance().getReference("Users").child(Userid);
                                 HashMap<String,String>hashMap= new HashMap<>();
+                                hashMap.put("business","truee");
                                 hashMap.put("id",Userid);
                                 hashMap.put("preferedlanguage",preferedlanguage);
                                 hashMap.put("username",s1);

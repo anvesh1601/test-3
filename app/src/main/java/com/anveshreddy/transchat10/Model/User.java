@@ -8,7 +8,9 @@ public class User {
     private String Email;
     private String status;
     private  String search;
-    public User(String id, String username, String ImageURL,String preferedlanguage,String Email,String status,String search) {
+    private String business;
+
+    public User(String id, String username, String ImageURL,String preferedlanguage,String Email,String status,String search,String business) {
         this.id = id;
         this.username = username;
         this.ImageURL = ImageURL;
@@ -16,10 +18,19 @@ public class User {
         this.Email=Email;
         this.status=status;
         this.search=search;
+this.business=business;
     }
 
     public User() {
 
+    }
+
+    public String getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(String business) {
+        this.business = business;
     }
 
     public String getStatus() {

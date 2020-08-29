@@ -11,18 +11,23 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="slider1_firsttext" tools:ignore="StringEscaping">
-        Are you a good photo grapher and can understand only Native and English language to connect to world then this is the place for you.
+        Are you a good photographeror a Designer and want to Explore or Show your Skills to world then this is the place for you.
     </string>
     <string name="slider1_Secondtext" tools:ignore="StringEscaping">
-        A Nice Platform Where you can Share Images and Stories</string>
+        Share your Photoshoots or Design Ideas as a post or stories</string>
     <string name="slider1_thirdtext" tools:ignore="StringEscaping">
-        Receive Messages in the language you like</string>
+       Hire or get hires and Chat in the language you like</string>
     <string name="slider1_fouthtext" tools:ignore="StringEscaping">
-        Just sit back and relax share photographes.</string>
+        Just sit back and relax share photographes/Design get hired.</string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="design_shoot"><![CDATA[Design\'&\'shoot]]></string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="truee">
+        <item>on</item>
+        <item>off</item>
+    </string-array>
     <string-array name="languages">
         <item>Hindi</item>
         <item>English</item>
